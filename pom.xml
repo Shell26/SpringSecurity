@@ -54,7 +54,7 @@
         </dependency>
 
 
-
+                  <!--для связи с БД-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -62,6 +62,7 @@
             <version>5.2.0.RELEASE</version>
         </dependency>
 
+            <!--ядро, для работы спринга-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -69,7 +70,7 @@
             <version>5.2.0.RELEASE</version>
         </dependency>
 
-        <!--        создание новых объектов и извлечение из spring Application Context-->
+        <!-- создание новых объектов и извлечение из spring Application Context-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -77,6 +78,7 @@
             <version>5.2.0.RELEASE</version>
         </dependency>
 
+                 <!-- предоставляет нам механизмы dependency injection-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -88,13 +90,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>5.2.0.RELEASE</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
             <version>5.2.0.RELEASE</version>
         </dependency>
 

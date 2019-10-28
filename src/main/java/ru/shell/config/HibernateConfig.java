@@ -16,16 +16,18 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "ru.shell")
-@EnableTransactionManagement
+@EnableTransactionManagement //позволяет использовать TransactionManager для управления транзакциями
+                             // чтобы какой-то набор операций выполнялся как единое целое
 @PropertySource(value = "classpath:db.properties")
 public class HibernateConfig {
-    private Environment environment;
+    private Environment environment; //Environment получает свойства из property файла
 
     @Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
 
+    // нужен чтобы представить свойства Hibernate в виде объекта Properties
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
@@ -34,6 +36,7 @@ public class HibernateConfig {
     }
 
     @Bean
+    // создание соединения с БД
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
@@ -53,6 +56,7 @@ public class HibernateConfig {
     }
 
     @Bean
+    // настройка менеджера транзакций
     public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());

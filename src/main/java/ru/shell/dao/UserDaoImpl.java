@@ -16,6 +16,7 @@ public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
 
+    //сообщает Spring о том, что он должен покопаться у себя в контексте и подставить сюда подходящий бин.
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

@@ -13,8 +13,13 @@ import ru.shell.service.UserServiceImpl;
 
 import java.util.List;
 
+//сообщает Spring MVC, что данный класс является контроллером
 @Controller
 public class UserController {
+
+//    DispatcherServlet - главный контроллер, все входящие запросы проходят через него и он уже
+//    дальше передает их конкретному контроллеру. диспетчер будет проверять аннотации
+//    @RequestMapping чтобы вызвать подходящий метод.
 
     private UserService userService;
 
@@ -23,6 +28,8 @@ public class UserController {
         this.userService = userService;
     }
 
+    //позволяет задать адреса методам контроллера, по которым они будут доступны в клиенте (браузер)
+    //Eе можно применять также и к классу контроллера, чтобы задать корневой адрес для всех методов.
     @RequestMapping(value = "/", method = RequestMethod.GET)
 //    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView allUsers() {
@@ -34,7 +41,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView editPage(@PathVariable("id") int id) {
+    public ModelAndView editPage(@PathVariable("id") int id) { //@PathVariable указывает на то, что данный параметр (int id) получается из адресной строки
         User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
@@ -45,7 +52,7 @@ public class UserController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView editUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/"); //означает, что после выполнения данного метода мы будем перенаправлены на адрес "/"
         userService.edit(user);
         return modelAndView;
     }
